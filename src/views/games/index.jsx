@@ -1,10 +1,24 @@
-const Games = ({ subView, value1 = U.atom(''), value2 = U.atom('') }) => {
-  const sum = U.add(value1, value2)
-  
+import Tictactoe from "./tic-tac-toe.jsx"
+import PageNotFound from '../PageNotFound.jsx'
+import Grid from '../../utils/Grid.js'
+
+const subViews = {
+  'tic-tac-toe': Tictactoe,
+}
+
+const componentParams = {
+  // 'tic-tac-toe': {
+  //   grid: new Grid(3, 3)
+  // }
+}
+
+const Games = ({ subView }) => {
+  const Component = subViews[subView] || PageNotFound
+ 
   return (
       <div>
          <p>Games!</p>
-         <p>Show: {subView}</p>
+         <Component {...componentParams[subView] || {}}/>
       </div>
   )
 }

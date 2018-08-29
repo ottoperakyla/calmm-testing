@@ -76,6 +76,27 @@
       padding-left: 0;
     }
 
+    .component {
+      max-width: 320px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .grid {
+      td {
+        border: 1px solid black;
+        padding: 5px;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+
+        &:hover {
+          background: gray;
+          cursor: pointer;
+        }
+      }
+    }
+
     .todolist {
       max-width: 320px;
 

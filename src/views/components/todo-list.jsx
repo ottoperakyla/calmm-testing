@@ -1,4 +1,3 @@
-import * as U from 'karet.util'
 import Storage from '../../utils/Storage.js'
 
 const storage = new Storage('todolist', [])

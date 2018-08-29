@@ -23,7 +23,8 @@ const gamesLinks = [
 ]
 const componentsLinks = [
   {id: 'todo-list', title: 'Todo List'},
-  {id: 'calendar', title: 'Calendar'}
+  {id: 'calendar', title: 'Calendar'},
+  {id: 'count-down', title: 'Countdown'},
 ]
 
 const Header = ({ setActive, activeDropdown }) => {
