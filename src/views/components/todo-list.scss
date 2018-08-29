@@ -1,0 +1,12 @@
+.todolist {
+  .todolist__todos {
+    .todolist__todo {
+      display: flex;
+      justify-content: space-between;
+      
+      label {
+        flex: 2;
+      }
+    }
+  }
+}

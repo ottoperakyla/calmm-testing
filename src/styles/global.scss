@@ -7,6 +7,10 @@
         color: $color-dark;
     }
 
+    html, body, #app, .container, .container-fluid {
+      height: 100%;
+    }
+
     h1 {
         font-weight: 400;
         margin: 0 0 20px 0;
@@ -14,8 +18,8 @@
         text-shadow: 1px 1px 2px rgba(0,0,0,0.025);
     }
 
-    h2 {
-        margin-bottom: 0;
+    h2, h3, h4, h5 {
+      margin: 0;
     }
 
     * {
@@ -26,5 +30,64 @@
         content: "";
         display: table;
         clear: both;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .container-fluid {
+      width: 100%;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    ul, ol {
+      &.no-spacing {
+        padding: 0;
+        margin: 0;
+        list-style: none;  
+      }
+    }
+
+    .space-s {
+      padding: 0.5rem;
+    }
+
+    .space-xs {
+      padding: 0.25rem;
+    }
+
+    .space-clear-tb {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .space-clear-rl {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .todolist {
+      max-width: 320px;
+
+      .todolist__todos {
+        .todolist__todo {
+          display: flex;
+          justify-content: space-between;
+
+          label {
+            flex: 2;
+          }
+        }
+      }
     }
 }
