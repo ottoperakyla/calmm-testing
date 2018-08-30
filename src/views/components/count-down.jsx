@@ -1,5 +1,3 @@
-import Grid from '../../utils/Grid'
-
 const Countdown = ({ timeTo }) => {
   const timeLeft = Kefir.interval(1000)
     .map(() => getTimeLeft(timeTo))

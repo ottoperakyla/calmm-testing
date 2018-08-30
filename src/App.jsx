@@ -25,6 +25,7 @@ const componentsLinks = [
   {id: 'todo-list', title: 'Todo List'},
   {id: 'calendar', title: 'Calendar'},
   {id: 'count-down', title: 'Countdown'},
+  {id: 'draggable-list', title: 'Draggable List'}
 ]
 
 const Header = ({ setActive, activeDropdown }) => {
@@ -54,7 +55,6 @@ const route = Kefir
     .constant()
     .merge(Kefir.fromEvents(window, 'hashchange'))
     .map(() => {
-        // const hash = window.location.hash.replace('#/', '')
         const hashParts = location.hash.split('/').slice(1)
         const view = hashParts[0]
         const subView = hashParts[1]

@@ -12,6 +12,6 @@ export default class Storage {
   }
 
   set(data) {
-    return window.localStorage.setItem(this.storageKey, JSON.stringify(data))
+    window.localStorage.setItem(this.storageKey, JSON.stringify(data))
   }
 }

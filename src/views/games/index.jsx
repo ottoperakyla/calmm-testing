@@ -1,15 +1,15 @@
 import Tictactoe from "./tic-tac-toe.jsx"
 import PageNotFound from '../PageNotFound.jsx'
-import Grid from '../../utils/Grid.js'
+import {getGrid} from '../../utils/Grid.js'
 
 const subViews = {
   'tic-tac-toe': Tictactoe,
 }
 
 const componentParams = {
-  // 'tic-tac-toe': {
-  //   grid: new Grid(3, 3)
-  // }
+  'tic-tac-toe': {
+    grid: U.atom(getGrid(3, 3))
+  }
 }
 
 const Games = ({ subView }) => {

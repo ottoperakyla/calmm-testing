@@ -1,60 +1,43 @@
 import Storage from '../../utils/Storage.js'
 
-const storage = new Storage('todolist', [])
-
+const defaultTodos = [
+  {title: 'buy beer', completed: true},
+  {title: 'eat food', completed: false},
+  {title: 'code something', completed: false}
+]
+const storage = new Storage('todolist', defaultTodos)
 const Todolist = ({ todos = U.atom(storage.get()), newTodo = U.atom('') }) => {  
-  
   return (
       <div className="todolist space-s space-clear-rl">
         <h2>Todos</h2>
         <div className="todolist__todos space-s space-clear-rl">
-        {U.map(({title, completed}) => 
-          <div className="todolist__todo" key={title}>
-            <input onChange={() => todos.modify(todos => toggleComplete(todos, title))} id={title} type="checkbox" {...{checked: completed}} />
+        {U.ift(U.propEq('length', 0, U.defaultTo([], todos)), 
+          <div>All done!</div>
+        )}
+        {U.set(storage, U.defaultTo([], todos))}
+        {U.set(newTodo, todos.map(() => ''))}
+        {U.mapIndexed(({title, completed}, idx) => 
+          <div className="todolist__todo" key={idx}>
+            <input onChange={() => todos.view([idx, 'completed']).modify(R.not)} type="checkbox" checked={completed} id={title} />
             <label className="space-xs space-clear-tb" htmlFor={title}>
               {completed ? <s>{title}</s> : title}
             </label>
-            <button onClick={() => todos.modify(todos => removeTodo(todos, title))}>&times;</button>
+            <button onClick={() => todos.view([idx]).remove()}>&times;</button>
           </div>, 
-          todos
+          U.defaultTo([], todos)
         )}
         </div>
         <div className="todolist__form">
-          <input onKeyDown={(e) => e.keyCode === 13 && addNewTodo(todos, newTodo)} value={newTodo} onChange={(e) => newTodo.set(e.target.value)} id="add-todo" type="text"/>
-          <button onClick={() => addNewTodo(todos, newTodo)}>Add todo</button>
+          <form onSubmit={() => {
+            const title = newTodo.get().trim()
+            if (title) todos.modify(R.append({title, completed: false}))
+          }}>
+            <input value={newTodo} onChange={(e) => newTodo.set(e.target.value)} type="text"/>
+            <button>Add todo</button>
+          </form>
         </div>
       </div>
   )
 }
 
 export default Todolist
-
-function toggleComplete(todos, title) {
-  const newTodos = todos.map(todo => {
-    return todo.title === title
-      ? {title: todo.title, completed: !todo.completed}
-      : todo
-  })
-
-  storage.set(newTodos)
-
-  return newTodos
-}
-
-function removeTodo(todos, title) {
-  const newTodos = todos.filter(todo => todo.title !== title)
-
-  storage.set(newTodos)
-
-  return newTodos
-}
-
-function addNewTodo(todos, newTodo) {
-  todos.modify(todos => {
-    const newTodos = todos.concat({title: newTodo.get(), completed: false})
-    storage.set(newTodos)
-    return newTodos
-  })
-  
-  newTodo.set('')
-}
