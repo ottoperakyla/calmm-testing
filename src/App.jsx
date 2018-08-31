@@ -19,7 +19,8 @@ const Start = () => (
 const gamesLinks = [
   {id: 'tic-tac-toe', title: 'Tic tac toe'},
   {id: 'solitaire', title: 'Solitaire'},
-  {id: 'blackjack', title: 'Blackjack'}
+  {id: 'blackjack', title: 'Blackjack'},
+  {id: 'memory-game', title: 'Memory game'}
 ]
 const componentsLinks = [
   {id: 'todo-list', title: 'Todo List'},

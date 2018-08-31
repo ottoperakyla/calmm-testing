@@ -1,9 +1,11 @@
 import Tictactoe from "./tic-tac-toe.jsx"
+import MemoryGame from "./memory-game.jsx"
 import PageNotFound from '../PageNotFound.jsx'
 import {getGrid} from '../../utils/Grid.js'
 
 const subViews = {
   'tic-tac-toe': Tictactoe,
+  'memory-game': MemoryGame
 }
 
 const componentParams = {
