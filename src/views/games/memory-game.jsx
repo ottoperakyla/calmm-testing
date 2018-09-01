@@ -1,13 +1,11 @@
 import {shuffle, classNames, double, chunk} from '../../utils/util.js'
 
-const MemoryGame = ({ pieces, unflip = U.atom(false) }) => {
+const MemoryGame = ({ rawPieces, unflip = U.atom(false) }) => {
+  const initPiece = rawPiece => 
+    ({emoji: rawPiece[0], text: rawPiece[1], visible: false, revealed: false})
+
   const initPieces = R.pipe(
-    R.map(
-      R.pipe(
-        piece => ({emoji: piece[0], text: piece[1], visible: false, revealed: false}),
-        double
-      )
-    ),
+    R.map(R.pipe(initPiece, double)),
     R.flatten,
     shuffle,
     chunk(4)
@@ -22,7 +20,7 @@ const MemoryGame = ({ pieces, unflip = U.atom(false) }) => {
     )
   )
 
-  pieces = U.atom(initPieces(pieces))
+  const pieces = U.atom(initPieces(rawPieces))
   const lockedState = isLockedState(pieces)
 
   lockedState.log()

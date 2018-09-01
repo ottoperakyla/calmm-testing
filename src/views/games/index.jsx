@@ -22,7 +22,7 @@ const componentParams = {
     grid: U.atom(getGrid(3, 3))
   },
   'memory-game': {
-    pieces: randomEmojis
+    rawPieces: randomEmojis
   }
 }
 

@@ -1,4 +1,3 @@
-// __tests__/CheckboxWithLabel-test.js
 import * as g from '../src/globals.js'
 import React from 'react'
 import {mount} from 'enzyme'
