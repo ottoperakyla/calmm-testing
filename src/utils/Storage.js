@@ -14,4 +14,8 @@ export default class Storage {
   set(data) {
     window.localStorage.setItem(this.storageKey, JSON.stringify(data))
   }
+
+  clear() {
+    localStorage.removeItem(this.storageKey)
+  }
 }

@@ -147,14 +147,25 @@
         text-align: center;
         border-right: 1px solid black;
         border-bottom: 1px solid black;
-
-        .memory-game__piece-mask {
+        
+        .memory-game__piece {
           width: 4rem;
           height: 4rem;
-          position: absolute;
-          background: green;
-          border-right: 1px solid white;
-          border-bottom: 1px solid white;
+          backface-visibility: hidden;
+          transform: rotate3d(1, 0, 0, 180deg);
+
+          &.flip,
+          &.unflip {
+            transition: transform 0.25s ease-in;
+          }
+
+          &.flip {
+            transform: rotate3d(1, 0, 0, 0deg);
+          }
+
+          &.unflip {
+            transform: rotate3d(1, 0, 0, 180deg);
+          }
         }
       }
     }

@@ -1,47 +1,18 @@
-import emojis from './emojis'
+import {shuffle, classNames, double, chunk} from '../../utils/util.js'
 
-const randomEmojis = []
-const pairsCount = 8
-const double = x => [x, x]
-const chunk = count => array => {
-  const nested = []
-  for (let i = 0; i < array.length; i += count) {
-    nested.push(array.slice(i, i + count))
-  }
-  return nested
-}
-
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    const temp = a[i]
-    a[i] = a[j]
-    a[j] = temp
-  }
-  return a
-}
-
-for (let i = 0; i < pairsCount; i++) {
-  randomEmojis.push(emojis[Math.round(Math.random() * emojis.length)])
-}
-
-const formattedEmojis = R.pipe(
-  R.map(
-    R.pipe(
-      (e) => ({emoji: e[0], text: e[1], visible: false, revealed: false}),
-      double
-    )
-  ),
-  R.flatten,
-  shuffle,
-  chunk(4)
-)
-
-const doubled = formattedEmojis(randomEmojis)
-
-console.log({randomEmojis, doubled})
-
-const MemoryGame = ({ pieces = U.atom(doubled) }) => {
+const MemoryGame = ({ pieces, unflip = U.atom(false) }) => {
+  const initPieces = R.pipe(
+    R.map(
+      R.pipe(
+        piece => ({emoji: piece[0], text: piece[1], visible: false, revealed: false}),
+        double
+      )
+    ),
+    R.flatten,
+    shuffle,
+    chunk(4)
+  )
+  
   const isLockedState = R.map(
     R.pipe(
       R.flatten,
@@ -50,6 +21,8 @@ const MemoryGame = ({ pieces = U.atom(doubled) }) => {
       R.lte(2)
     )
   )
+
+  pieces = U.atom(initPieces(pieces))
   const lockedState = isLockedState(pieces)
 
   lockedState.log()
@@ -60,14 +33,16 @@ const MemoryGame = ({ pieces = U.atom(doubled) }) => {
           {column.map(({emoji, text, visible, revealed}, colIndex) => 
             <div
             onClick={() => pieces.view([rowIndex, colIndex, 'visible']).modify(R.not)}
-            title={text} className="memory-game__piece-container" key={colIndex}>
-              {!visible && <div className="memory-game__piece-mask touchable"></div>}
-              <div className="memory-game__piece">{emoji}</div>
+            title={text} className="memory-game__piece-container touchable" key={colIndex}>
+              <div className={classNames({'memory-game__piece': true, flip: visible})}>{emoji}</div>
             </div>
           )}
         </div>,
         pieces
       )}
+      <div>
+        <button onClick={() => unflip.modify(R.not)}>Unflip</button>
+      </div>
     </div>
   )
 }

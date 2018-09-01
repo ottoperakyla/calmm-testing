@@ -1,3 +1,4 @@
+import Storage from '../../utils/Storage.js'
 import Todolist from './todo-list.jsx'
 import Calendar from './calendar.jsx'
 import CountDown from './count-down.jsx'
@@ -11,6 +12,13 @@ const subViews = {
   'draggable-list': DraggableList
 }
 
+const defaultTodos = [
+  {title: 'buy beer', completed: true},
+  {title: 'eat food', completed: false},
+  {title: 'code something', completed: false}
+]
+const todoStorage = new Storage('todolist', defaultTodos)
+
 const componentParams = {
   'count-down': {
     timeTo: U.atom(+new Date() + 27905000)
@@ -23,6 +31,9 @@ const componentParams = {
       'the',
       'butt?'
     ])
+  },
+  'todo-list': {
+    storage: todoStorage
   }
 }
 
