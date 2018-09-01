@@ -4,6 +4,8 @@ import Calendar from './calendar.jsx'
 import CountDown from './count-down.jsx'
 import DraggableList from './draggable-list.jsx'
 import PageNotFound from '../PageNotFound.jsx'
+import GithubLink from '../../utils/github-link.jsx'
+
 
 const subViews = {
   'todo-list': Todolist,
@@ -43,6 +45,7 @@ const Components = ({ subView }) => {
   return (
       <div>
         <Component {...componentParams[subView] || {}}/>
+        <GithubLink path={`components/${subView}.jsx`} />
       </div>
   )
 }

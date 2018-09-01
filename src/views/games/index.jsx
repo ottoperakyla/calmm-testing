@@ -3,6 +3,7 @@ import MemoryGame from "./memory-game.jsx"
 import PageNotFound from '../PageNotFound.jsx'
 import {getGrid} from '../../utils/Grid.js'
 import emojis from './emojis'
+import GithubLink from '../../utils/github-link.jsx'
 
 const randomEmojis = []
 const pairsCount = 8
@@ -33,6 +34,7 @@ const Games = ({ subView }) => {
       <div>
          <p>Games!</p>
          <Component {...componentParams[subView] || {}}/>
+         <GithubLink path={`games/${subView}.jsx`} />
       </div>
   )
 }
