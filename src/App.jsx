@@ -26,7 +26,8 @@ const componentsLinks = [
   {id: 'todo-list', title: 'Todo List'},
   {id: 'calendar', title: 'Calendar'},
   {id: 'count-down', title: 'Countdown'},
-  {id: 'draggable-list', title: 'Draggable List'}
+  {id: 'draggable-list', title: 'Draggable List'},
+  {id: 'percolation', title: 'Percolation'}
 ]
 
 const Header = ({ setActive, activeDropdown }) => {

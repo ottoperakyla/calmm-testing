@@ -135,12 +135,11 @@
       }
     }
 
-    .memory-game {
+    .grid {
       display: flex;
       border: 1px solid black;
-      width: 16rem;
-
-      .memory-game__piece-container {
+      
+      .grid__piece-container {
         font-size: 3rem;
         width: 4rem;
         height: 4rem;
@@ -148,25 +147,37 @@
         border-right: 1px solid black;
         border-bottom: 1px solid black;
         
-        .memory-game__piece {
+        .grid__piece {
           width: 4rem;
           height: 4rem;
-          backface-visibility: hidden;
-          transform: rotate3d(1, 0, 0, 180deg);
-
-          &.flip,
-          &.unflip {
-            transition: transform 0.25s ease-in;
-          }
-
-          &.flip {
-            transform: rotate3d(1, 0, 0, 0deg);
-          }
-
-          &.unflip {
-            transform: rotate3d(1, 0, 0, 180deg);
-          }
         }
       }
     }
-}
+
+    .memory-game {
+      .grid__piece {
+        backface-visibility: hidden;
+        transform: rotate3d(1, 0, 0, 180deg);
+
+        &.flip,
+        &.unflip {
+          transition: transform 0.25s ease-in;
+        }
+
+        &.flip {
+          transform: rotate3d(1, 0, 0, 0deg);
+        }
+
+        &.unflip {
+          transform: rotate3d(1, 0, 0, 180deg);
+        }
+      }
+    }
+
+    .percolation {
+      .open {
+        background: white;
+      }
+    }
+
+} 
