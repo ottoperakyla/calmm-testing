@@ -25,23 +25,25 @@ export const chunk = count => array => {
 
 export const matrix = (h, w = h, v = 0) => {
   const outer = []
-  for (let i = 0; i < h; i++) {
-    outer.push(new Array(w).fill(v))
+  for (let i = 0; i < parseInt(h); i++) {
+    outer.push(new Array(parseInt(w)).fill(v))
   }
   return outer
 }
 
 export const Grid = (items, columnFn) => {
   return (
-    <div className="grid">
-    {U.mapIndexed((column, rowIndex) => 
-      <div key={rowIndex} className="grid__row">
-        {column.map((column, colIndex) => columnFn(column, rowIndex, colIndex))}
-      </div>,
-      items
-    )}
-    </div>
+    <table className="grid">
+      <tbody>
+      {U.mapIndexed((column, rowIndex) => 
+        <tr key={rowIndex} className="grid__row">
+          {column.map((column, colIndex) => columnFn(column, rowIndex, colIndex))}
+        </tr>,
+        items
+      )}
+      </tbody>
+    </table>
   )
 }
 
-export const log = R.tap(console.log)
+export const log = msg => R.tap(val => console.log(msg, val))

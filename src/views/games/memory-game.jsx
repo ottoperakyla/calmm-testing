@@ -27,11 +27,11 @@ const MemoryGame = ({ rawPieces, unflip = U.atom(false), getRandomPieces }) => {
   return (
     <div className="memory-game">
       {Grid(pieces, ({emoji, text, visible, revealed}, rowIndex, colIndex) => 
-        <div
+        <td
         onClick={() => pieces.view([rowIndex, colIndex, 'visible']).modify(R.not)}
         title={text} className="grid__piece-container touchable" key={colIndex}>
           <div className={classNames('grid__piece', {flip: visible})}>{emoji}</div>
-        </div>
+        </td>
       )}
       <div>
         <button onClick={() => unflip.modify(R.not)}>Unflip</button>

@@ -38,6 +38,9 @@ const componentParams = {
   },
   'todo-list': {
     storage: todoStorage
+  },
+  percolation: {
+    description: '<a target="_blank" href="https://en.wikipedia.org/wiki/Percolation_theory">Percolation in wikipedia</a>'
   }
 }
 
@@ -47,7 +50,7 @@ const Components = ({ subView }) => {
   return (
       <div>
         <Component {...componentParams[subView] || {}}/>
-        <GithubLink path={`components/${subView}.jsx`} />
+        <GithubLink description={R.pathOr(false, [subView, 'description'], componentParams)} path={`components/${subView}.jsx`} />
       </div>
   )
 }
