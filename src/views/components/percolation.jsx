@@ -1,4 +1,4 @@
-import {Grid, classNames, chunk, matrix} from '../../utils/util.js'
+import {Grid, classNames, matrix} from '../../utils/util.js'
 
 const traversePercolation = (m, percolates) => {
   percolates.set(false)
@@ -53,9 +53,8 @@ const Percolation = ({ size = U.atom(8), openProbability = U.atom(0.5), percolat
   return (
     <div className="percolation">
       {Grid(percolationMatrix, ({open, full}, rowIndex, colIndex) => 
-        <td
-        className={classNames('grid__piece-container', {open, full})} key={colIndex}>
-          <div className="grid__piece"></div>
+        <td className={classNames('grid__piece-container', {open, full})} key={colIndex}>
+          <div className="grid__piece">&nbsp;</div>
         </td>
       )}
       <div>
@@ -71,7 +70,7 @@ const Percolation = ({ size = U.atom(8), openProbability = U.atom(0.5), percolat
         }}>
           <fieldset>
             <label htmlFor="size">Size</label>
-            <input onChange={e => size.set(e.target.value)} value={size} type="number" id="size" min="4" max="16" />
+            <input onChange={e => size.set(e.target.value)} value={size} type="number" id="size" min="4" max="32" />
           </fieldset>
 
           <fieldset>
